@@ -1,0 +1,216 @@
+[
+    {
+        "Name" : "Refill_tank",
+        "Capacity" : 9000,
+        "Security volume max" : 10000,
+        "Initial volume" : 0,
+        "Inputs" : [
+            {
+                "Name" : "Return_tank",
+                "Flow type" : "Const",
+                "Flow value" : 1000
+            }
+        ],
+        "Event Input" : {
+            "Time" : {
+                "Prob Distr" : "Uniform",
+                "Min" : 1,
+                "Max" : 1,
+                "Step" : 1 
+            },
+            "Vol" : {
+                "Prob Distr" : "Uniform",
+                "Min" : 2000,
+                "Max" : 4000,
+                "Step" : 100
+            }
+        },
+        "Outputs" : [
+            {
+                "Name" : "Storage_tank",
+                "Flow type" : "Const",
+                "Flow value" : 20
+            }
+        ],
+        "Event Output" : {
+            "Time" : {
+                "Prob Distr" : "Uniform",
+                "Min" : 300,
+                "Max" : 800,
+                "Step" : 100
+            }
+        },
+        "Noise" : {
+            "Output":{
+                "Prob Distr" : "Normal Distribution",
+                "Mean" : 0,
+                "Standard desviation" : 3
+            }
+        }
+    },
+    
+    {
+        "Name" : "Storage_tank",
+        "Capacity" : 30000,
+        "Security volume max" : 32500,
+        "Initial volume" : 12000,
+        "Noise" : {
+            "Volume Measurement":{
+                "Prob Distr" : "Normal Distribution",
+                "Mean" : 0,
+                "Standard desviation" : 10
+            }
+        }
+    },
+    
+    {
+        "Name" : "Dispenser 1",
+        "Capacity" : 120,
+        "Security volume max" : 125,
+        "Initial volume" : 0,
+        "Inputs" : [
+            {
+                "Name" : "Storage_tank",
+                "Flow type" : "Const",
+                "Flow value" : 5
+            }
+        ],
+        "Event Input" : {
+            "Time" : {
+                "Prob Distr" : "Uniform",
+                "Min" : 1,
+                "Max" : 20,
+                "Step" : 1
+            },
+            "Vol" : {
+                "Prob Distr" : "Uniform",
+                "Min" : 5,
+                "Max" : 80,
+                "Step" : 1 
+            }
+        },
+        "Outputs" : [
+            {
+                "Name" : "Return_tank",
+                "Flow type" : "Const",
+                "Flow value" : 100
+            }
+        ],
+        "Event Output" : {
+            "Time" : {
+                "Prob Distr" : "Uniform",
+                "Min" : 1,
+                "Max" : 1,
+                "Step" : 1 
+            }
+        },
+        "Noise" : {
+            "Input":{
+                "Prob Distr" : "Normal Distribution",
+                "Mean" : 0,
+                "Standard desviation" : 0.2
+            }
+        }
+    },
+
+    {
+        "Name" : "Dispenser 2",
+        "Capacity" : 120,
+        "Security volume max" : 150,
+        "Initial volume" : 0,
+        "Inputs" : [
+            {
+                "Name" : "Storage_tank",
+                "Flow type" : "Const",
+                "Flow value" : 5
+            }
+        ],
+        "Event Input" : {
+            "Time" : {
+                "Prob Distr" : "Uniform",
+                "Min" : 1,
+                "Max" : 20,
+                "Step" : 1 
+            },
+            "Vol" : {
+                "Prob Distr" : "Uniform",
+                "Min" : 5,
+                "Max" : 80,
+                "Step" : 1 
+            }
+        },
+        "Outputs" : [
+            {
+                "Name" : "Return_tank",
+                "Flow type" : "Const",
+                "Flow value" : 100
+            }
+        ],
+        "Event Output" : {
+            "Time" : {
+                "Prob Distr" : "Uniform",
+                "Min" : 1,
+                "Max" : 1,
+                "Step" : 1 
+            }
+        },
+        "Noise" : {
+            "Input":{
+                "Prob Distr" : "Normal Distribution",
+                "Mean" : 0,
+                "Standard desviation" : 0.2
+            }
+        }
+    },
+
+    {
+        "Name" : "Return_tank",
+        "Capacity" : 30000,
+        "Security volume max" : 25000,
+        "Initial volume" : 15000
+    },
+
+    {
+        "Name": "Leak_tank",
+        "Capacity": 40000,
+        "Security volume max": 40000,
+        "Initial volume" : 0,
+        "Inputs":[
+            {
+                "Name": "Storage_tank",
+                "Flow type": "Var",
+                "Flow value": 0.01333
+            }
+        ],
+        "Event Input": {
+            "Time": {
+                "Prob Distr": "Uniform",
+                "Min": 33120,
+                "Max": 33120,
+                "Step": 1 
+            },
+            "Vol": {
+                "Prob Distr": "Uniform",
+                "Min": 50000,
+                "Max": 50000,
+                "Step": 1
+            }
+        }, 
+        "Outputs" : [
+            {
+                "Name" : "Return_tank",
+                "Flow type" : "Const",
+                "Flow value" : 10
+            }
+        ],
+        "Event Output": {
+            "Time" : {
+                "Prob Distr" : "Uniform",
+                "Min" : 1440,
+                "Max" : 5760,
+                "Step" : 1 
+            }
+        }
+    }
+]
+
