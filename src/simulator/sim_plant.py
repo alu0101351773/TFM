@@ -51,9 +51,9 @@ df2['Venta (L)'] = - df2['Venta (L)']
 # file = 'C:\\Users\\nicok\\OneDrive\\Escritorio\\datos_simulacion.csv'
 file = 'datos_simulacion.csv'
 df2.to_csv(file, decimal =  ',')
-os.startfile(file)
+# os.startfile(file)
 
-plant_sim.graph_volume_records()
+# plant_sim.graph_volume_records()
 # print(df)
 
 
