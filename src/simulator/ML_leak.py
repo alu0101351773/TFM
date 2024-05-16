@@ -11,9 +11,15 @@ import pandas as pd
 from sklearn.metrics import accuracy_score, recall_score, precision_score, f1_score, roc_auc_score
 from sklearn.model_selection import train_test_split
 
+# Modificación del Jorge (a.k.a. la mickey-herramienta)
+import os
+
+script_dir = os.path.dirname(os.path.abspath(__file__))
+
+csv_file_path = os.path.join(script_dir, 'inventario-1anio.csv')
 
 # IMPORTAR DATOS
-data = pd.read_csv('inventario-1anio.csv',decimal=',').iloc[:,1:]
+data = pd.read_csv(csv_file_path,decimal=',').iloc[:,1:]
 
 # SEPARAMOS ENTRE ATRIBUTOS Y CLASES
 X = data.drop(['Fugando combustible'],axis=1)
