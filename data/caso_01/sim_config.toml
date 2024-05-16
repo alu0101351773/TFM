@@ -1,0 +1,7 @@
+[simulation]
+log_end = 288000
+
+[tanks]
+flow_value = 0.0133
+time = 33120
+vol = 50000

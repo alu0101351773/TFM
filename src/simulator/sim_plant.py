@@ -12,22 +12,43 @@ Por medio de la simulación y creando el control de la planta
 import json
 import matplotlib
 import os
+import sys
+import toml
 
 from tank import *
 from plant import *
 
-with open('tanks.json') as f:
+import os
+script_dir = os.path.dirname(os.path.abspath(__file__))
+csv_file_path = os.path.join(script_dir, 'inventario-1anio.csv')
+
+with open(os.path.join(script_dir, 'tanks.json')) as f:
   data_tanks = json.load(f)
 
-with open('inputs_user.json') as f:
+with open(os.path.join(script_dir, 'inputs_user.json')) as f:
   data_inputs = json.load(f)
 
-with open('simulation.json') as f:
+with open(os.path.join(script_dir, 'simulation.json')) as f:
   data_simulation = json.load(f)
   t_initial = data_simulation['log_initial']
   t_step = data_simulation['log_step']
   t_end = data_simulation['log_end']
   t_cycle = data_simulation['sim_step']
+
+
+# Fragmento de fichero de configuracion adicional para no modificar
+extra_config = toml.load(sys.argv[1])
+print(extra_config)
+
+# Configuración de simulación
+t_end = extra_config['simulation']['log_end']
+
+# Configuración de tanques
+data_tanks[-1]['Inputs'][0]['Flow value'] = extra_config['tanks']['flow_value']
+data_tanks[-1]['Event Input']['Time']['Max'] = extra_config['tanks']['time']
+data_tanks[-1]['Event Input']['Time']['Min'] = extra_config['tanks']['time']
+data_tanks[-1]['Event Input']['Vol']['Min'] = extra_config['tanks']['vol']
+data_tanks[-1]['Event Input']['Vol']['Min'] = extra_config['tanks']['vol']
 
 
 # MONTAMOS LA SIMULACION

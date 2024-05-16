@@ -13,9 +13,7 @@ from sklearn.model_selection import train_test_split
 
 # Modificación del Jorge (a.k.a. la mickey-herramienta)
 import os
-
 script_dir = os.path.dirname(os.path.abspath(__file__))
-
 csv_file_path = os.path.join(script_dir, 'inventario-1anio.csv')
 
 # IMPORTAR DATOS
