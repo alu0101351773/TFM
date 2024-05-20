@@ -1,0 +1,6 @@
+[simulation]
+registers = 1000
+
+[tanks]
+flow_value = 0.0133
+leak_percent = 0.75

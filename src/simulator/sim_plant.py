@@ -35,9 +35,10 @@ with open(os.path.join(script_dir, 'simulation.json')) as f:
   t_end = data_simulation['log_end']
   t_cycle = data_simulation['sim_step']
 
+DESTINATION_FOLDER = sys.argv[1]
 
 # Fragmento de fichero de configuracion adicional para no modificar
-extra_config = toml.load(sys.argv[1])
+extra_config = toml.load(f'{DESTINATION_FOLDER}\\sim.config.toml')
 print(extra_config)
 
 # Configuración de simulación
@@ -47,7 +48,7 @@ t_end = extra_config['simulation']['log_end']
 data_tanks[-1]['Inputs'][0]['Flow value'] = extra_config['tanks']['flow_value']
 data_tanks[-1]['Event Input']['Time']['Max'] = extra_config['tanks']['time']
 data_tanks[-1]['Event Input']['Time']['Min'] = extra_config['tanks']['time']
-data_tanks[-1]['Event Input']['Vol']['Min'] = extra_config['tanks']['vol']
+data_tanks[-1]['Event Input']['Vol']['Max'] = extra_config['tanks']['vol']
 data_tanks[-1]['Event Input']['Vol']['Min'] = extra_config['tanks']['vol']
 
 

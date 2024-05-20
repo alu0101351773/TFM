@@ -1,7 +1,9 @@
 [simulation]
-log_end = 288000
+# step = 1440 
+# dias = (log_end / step) - 9
+log_end = 1452960
 
 [tanks]
 flow_value = 0.0133
-time = 33120
-vol = 50000
+time = 726480
+vol = 500000
