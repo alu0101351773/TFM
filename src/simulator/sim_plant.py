@@ -12,8 +12,12 @@ Por medio de la simulación y creando el control de la planta
 import json
 import matplotlib
 import os
+
+# Añadidos del Jorge
 import sys
 import toml
+import random
+import string
 
 from tank import *
 from plant import *
@@ -38,18 +42,20 @@ with open(os.path.join(script_dir, 'simulation.json')) as f:
 DESTINATION_FOLDER = sys.argv[1]
 
 # Fragmento de fichero de configuracion adicional para no modificar
-extra_config = toml.load(f'{DESTINATION_FOLDER}\\sim.config.toml')
-print(extra_config)
+dest_config = toml.load(f'{DESTINATION_FOLDER}\\sim_config.toml')
 
-# Configuración de simulación
-t_end = extra_config['simulation']['log_end']
+# Conversion de registros a tiempo 'log_end'
+t_end = (dest_config['simulation']['registers'] + 9) * t_step
+
+# Calculo de leak_time como mitad de log_end
+leak_time = t_end // 2
 
 # Configuración de tanques
-data_tanks[-1]['Inputs'][0]['Flow value'] = extra_config['tanks']['flow_value']
-data_tanks[-1]['Event Input']['Time']['Max'] = extra_config['tanks']['time']
-data_tanks[-1]['Event Input']['Time']['Min'] = extra_config['tanks']['time']
-data_tanks[-1]['Event Input']['Vol']['Max'] = extra_config['tanks']['vol']
-data_tanks[-1]['Event Input']['Vol']['Min'] = extra_config['tanks']['vol']
+data_tanks[-1]['Inputs'][0]['Flow value'] = dest_config['tanks']['flow_value']
+data_tanks[-1]['Event Input']['Time']['Max'] = leak_time
+data_tanks[-1]['Event Input']['Time']['Min'] = leak_time
+data_tanks[-1]['Event Input']['Vol']['Max'] = dest_config['tanks']['vol']
+data_tanks[-1]['Event Input']['Vol']['Min'] = dest_config['tanks']['vol']
 
 
 # MONTAMOS LA SIMULACION
@@ -71,7 +77,8 @@ df2.rename(columns={'Tiempo (min)': 'Tiempo (dia)'}, inplace=True)
 df2['Venta (L)'] = - df2['Venta (L)']
 
 # file = 'C:\\Users\\nicok\\OneDrive\\Escritorio\\datos_simulacion.csv'
-file = 'datos_simulacion.csv'
+suffix = ''.join(random.choices(string.digits, k=8))
+file = f'{DESTINATION_FOLDER}\\datos_simulacion_{suffix}.csv'
 df2.to_csv(file, decimal =  ',')
 # os.startfile(file)
 
