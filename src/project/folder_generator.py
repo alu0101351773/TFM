@@ -1,5 +1,4 @@
 import os
-import sys
 import toml
 import numpy as np
 
@@ -10,7 +9,7 @@ MAX_FLOW = 0.6
 FLOW_SAMPLES = 15
 
 CONFIG_FILE_TEMPLATE = {
-    'simulation': {'registers': 10_000},
+    'simulation': {'registers': 50},
     'tanks': {
         'flow_value': None,
         'vol': 50_000

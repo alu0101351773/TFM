@@ -1,5 +1,5 @@
 [simulation]
-registers = 10000
+registers = 50
 
 [tanks]
 flow_value = 0.6
