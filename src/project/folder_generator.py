@@ -9,7 +9,7 @@ MAX_FLOW = 0.6
 FLOW_SAMPLES = 15
 
 CONFIG_FILE_TEMPLATE = {
-    'simulation': {'registers': 50},
+    'simulation': {'registers': 1_000},
     'tanks': {
         'flow_value': None,
         'vol': 50_000
