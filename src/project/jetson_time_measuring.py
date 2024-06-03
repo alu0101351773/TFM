@@ -101,14 +101,15 @@ print(f'{"KNN:":<15} {(end - start):.4f} s\n')
 
 
 # XGBoost
-xgb_param_grid = pkl.load(open(f'{param_grids_path}/XGBClassifier.pkl', 'rb'))
-xgb_model = XGBClassifier(**xgb_param_grid)
+# NOTE: No se puede implementar porque requiere versión de pip>=21.3
+# xgb_param_grid = pkl.load(open(f'{param_grids_path}/XGBClassifier.pkl', 'rb'))
+# xgb_model = XGBClassifier(**xgb_param_grid)
 
-start = time.time()
-xgb_model.fit(X_train, y_train)
-end = time.time()
+# start = time.time()
+# xgb_model.fit(X_train, y_train)
+# end = time.time()
 
-print(f'{"XGBoost:":<15} {(end - start):.4f} s\n')
+# print(f'{"XGBoost:":<15} {(end - start):.4f} s\n')
 
 
 # Ensemble
@@ -117,7 +118,7 @@ vot_model = VotingClassifier(
         ('rf', RandomForestClassifier()),
         ('nb', GaussianNB()),
         ('knn', KNeighborsClassifier()),
-        ('XGB', XGBClassifier())
+        # ('XGB', XGBClassifier())
     ],
     voting='hard'
 )
