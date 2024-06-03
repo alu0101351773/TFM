@@ -10,7 +10,8 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
 import tensorflow as tf
 import toml
-from xgboost import XGBClassifier
+# from xgboost import XGBClassifier
+# NOTE: No se puede implementar porque requiere versión de pip>=21.3
 
 
 # Lectura de fichero
@@ -101,7 +102,6 @@ print(f'{"KNN:":<15} {(end - start):.4f} s\n')
 
 
 # XGBoost
-# NOTE: No se puede implementar porque requiere versión de pip>=21.3
 # xgb_param_grid = pkl.load(open(f'{param_grids_path}/XGBClassifier.pkl', 'rb'))
 # xgb_model = XGBClassifier(**xgb_param_grid)
 
