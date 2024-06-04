@@ -19,7 +19,7 @@ data_dict = {}
 DATA_DIR = '../../data/'
 
 for data_folder in os.listdir(DATA_DIR):
-    *data_files, config_file = os.listdir(f'{DATA_DIR}/{data_folder}')
+    *data_files, config_file = sorted(os.listdir(f'{DATA_DIR}/{data_folder}'))
 
     leak_value = toml.load(f'{DATA_DIR}/{data_folder}/{config_file}')['tanks']['flow_value']
 
@@ -129,10 +129,15 @@ end = time.time()
 
 print(f'{"Ensemble:":<15} {(end - start):.4f} s\n')
 
-
 # DL unilayer
+
+# Mickey-herramienta de stackoverflow
+# Cortesía de https://stackoverflow.com/a/63300341
+X_train = X_train.values
+X_train = X_train.reshape((X_train.shape[0], 1, X_train.shape[1]))
+
 unil_model = tf.keras.Sequential([
-    tf.keras.layers.Input(shape=(X_train.shape[1], 1)),
+    tf.keras.layers.Input(shape=(1, X_train.shape[1])),
     tf.keras.layers.LSTM(15, dropout=0.2),
     tf.keras.layers.Dense(1, activation='sigmoid')
 ])
@@ -189,6 +194,12 @@ print('DL ensemble:')
 dl_ensemble_total = 0
 for case in data_dict:
     X_train = data_dict[case]['train_dataframe'].drop(columns='Fugando combustible')
+    
+    # Mickey-herramienta de stackoverflow
+    # Cortesía de https://stackoverflow.com/a/63300341
+    X_train = X_train.values
+    X_train = X_train.reshape((X_train.shape[0], 1, X_train.shape[1]))
+    
     y_train = data_dict[case]['train_dataframe']['Fugando combustible']
     
     model = tf.keras.Sequential([
