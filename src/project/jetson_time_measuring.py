@@ -68,6 +68,9 @@ X_train, y_train = (
 param_grids_path = '../../pkl/param_grids'
 
 
+# Result dictionary
+result_dict = {}
+
 # RandomForest
 rf_param_grid = pkl.load(open(f'{param_grids_path}/RandomForestClassifier.pkl', 'rb'))
 rf_model = RandomForestClassifier(**rf_param_grid)
@@ -76,6 +79,7 @@ start = time.time()
 rf_model.fit(X_train, y_train)
 end = time.time()
 
+result_dict['Random Forest'] = (end - start)
 print(f'{"Random Forest:":<15} {(end - start):.4f} s\n')
 
 
@@ -87,6 +91,7 @@ start = time.time()
 gnb_model.fit(X_train, y_train)
 end = time.time()
 
+result_dict['Gaussian NB'] = (end - start)
 print(f'{"Gaussian NB:":<15} {(end - start):.4f} s\n')
 
 
@@ -98,6 +103,7 @@ start = time.time()
 knn_model.fit(X_train, y_train)
 end = time.time()
 
+result_dict['KNN'] = (end - start)
 print(f'{"KNN:":<15} {(end - start):.4f} s\n')
 
 
@@ -127,6 +133,7 @@ start = time.time()
 vot_model.fit(X_train, y_train)
 end = time.time()
 
+result_dict['Ensemble'] = (end - start)
 print(f'{"Ensemble:":<15} {(end - start):.4f} s\n')
 
 # DL unilayer
@@ -158,6 +165,7 @@ unil_model.fit(
 )
 end = time.time()
 
+result_dict['DL unilayer'] = (end - start)
 print(f'{"DL unilayer:":<15} {(end - start):.4f} s\n')
 
 
@@ -186,6 +194,7 @@ multil_model.fit(
 )
 end = time.time()
 
+result_dict['DL multilayer'] = (end - start)
 print(f'{"DL multilayer:":<15} {(end - start):.4f} s\n')
 
 
@@ -226,4 +235,12 @@ for case in data_dict:
     dl_ensemble_total += (end - start)
     print(f'\t{data_dict[case]["leak_value"]:.4f}  {(end - start):.4f} s')
 
+result_dict['DL ensemble'] = dl_ensemble_total
 print(f'\tTOTAL   {dl_ensemble_total:.4f} s')
+
+
+# NOTE: Esto a veces peta
+# (pd.DataFrame
+#     .from_dict(result_dict, orient='index', columns=['Training time (s)'])
+#     .to_latex('../../docs/latex/jetson_exec_time.tex', index=False, float_format='%.4f')
+# )
