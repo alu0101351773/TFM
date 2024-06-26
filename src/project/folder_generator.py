@@ -4,21 +4,21 @@ import numpy as np
 
 FOLDER_LOCATION = '../../data'
 
-MIN_FLOW = 0.6
-MAX_FLOW = 3.535
-FLOW_SAMPLES = 45
+MIN_FLOW = 0.013
+MAX_FLOW = 5
+FLOW_SAMPLES = 50
 
 CONFIG_FILE_TEMPLATE = {
-    'simulation': {'registers': 5_000},
+    'simulation': {'registers': 1_500},
     'tanks': {
         'flow_value': None,
-        'vol': 50_000
+        'vol': 500_000_000
     }
 }
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
-for i, val in enumerate(np.linspace(MIN_FLOW, MAX_FLOW, FLOW_SAMPLES), start=15):
+for i, val in enumerate(np.linspace(MIN_FLOW, MAX_FLOW, FLOW_SAMPLES)):
     dir_route = f'{script_dir}/{FOLDER_LOCATION}/case_{i:0>4}'
     try:
         os.makedirs(dir_route)

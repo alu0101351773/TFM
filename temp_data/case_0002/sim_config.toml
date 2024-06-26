@@ -1,6 +1,0 @@
-[simulation]
-registers = 5000
-
-[tanks]
-flow_value = 0.09685714285714285
-vol = 50000
