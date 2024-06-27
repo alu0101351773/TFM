@@ -5,8 +5,8 @@ import numpy as np
 FOLDER_LOCATION = '../../data'
 
 MIN_FLOW = 0.013
-MAX_FLOW = 5
-FLOW_SAMPLES = 50
+MAX_FLOW = 2
+FLOW_SAMPLES = 20
 
 CONFIG_FILE_TEMPLATE = {
     'simulation': {'registers': 1_500},

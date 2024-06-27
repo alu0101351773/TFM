@@ -2,5 +2,5 @@
 registers = 1500
 
 [tanks]
-flow_value = 0.3183265306122449
+flow_value = 0.3267368421052632
 vol = 500000000

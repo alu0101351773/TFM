@@ -2,7 +2,7 @@ import os
 import subprocess
 from tqdm import tqdm
 
-DATASET_NUMBER = 3
+DATASET_NUMBER = 2
 
 DATA_FOLDER = '../../data'
 script_dir = os.path.dirname(os.path.abspath(__file__))
