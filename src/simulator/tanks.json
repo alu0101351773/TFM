@@ -51,9 +51,9 @@
     
     {
         "Name" : "Storage_tank",
-        "Capacity" : 30000,
-        "Security volume max" : 32500,
-        "Initial volume" : 12000,
+        "Capacity" : 3000000000,
+        "Security volume max" : 3250000000,
+        "Initial volume" : 1200000000,
         "Noise" : {
             "Volume Measurement":{
                 "Prob Distr" : "Normal Distribution",
@@ -172,8 +172,8 @@
 
     {
         "Name": "Leak_tank",
-        "Capacity": 40000,
-        "Security volume max": 40000,
+        "Capacity": 400000000,
+        "Security volume max": 400000000,
         "Initial volume" : 0,
         "Inputs":[
             {
@@ -191,8 +191,8 @@
             },
             "Vol": {
                 "Prob Distr": "Uniform",
-                "Min": 50000,
-                "Max": 50000,
+                "Min": 50000000000,
+                "Max": 50000000000,
                 "Step": 1
             }
         }, 

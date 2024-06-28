@@ -57,7 +57,6 @@ data_tanks[-1]['Event Input']['Time']['Min'] = leak_time
 data_tanks[-1]['Event Input']['Vol']['Max'] = dest_config['tanks']['vol']
 data_tanks[-1]['Event Input']['Vol']['Min'] = dest_config['tanks']['vol']
 
-
 # MONTAMOS LA SIMULACION
 plant_sim = plant(data_tanks, t_cycle)
 plant_sim.simulation(time_end = t_end, user_inputs = data_inputs)
