@@ -5,7 +5,7 @@ import numpy as np
 FOLDER_LOCATION = '../../data'
 
 MIN_FLOW = 0.013
-MAX_FLOW = 2
+MAX_FLOW = 0.6
 FLOW_SAMPLES = 20
 
 CONFIG_FILE_TEMPLATE = {
